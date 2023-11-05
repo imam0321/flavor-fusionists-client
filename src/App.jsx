@@ -4,9 +4,7 @@ function App() {
 
 
   return (
-    <>
-
-      <h1>Flavor Fusionists</h1>        
+    <>     
     </>
   )
 }
