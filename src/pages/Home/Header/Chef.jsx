@@ -1,6 +1,7 @@
 import { FaThumbsUp } from "react-icons/fa6";
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { Link } from "react-router-dom";
 
 
 const Chef = ({ chef }) => {
@@ -32,7 +33,7 @@ const Chef = ({ chef }) => {
             </div>
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-neutral">View Recipes</button>
+            <Link to={`/chefs/${chef_id}`} className="btn btn-neutral">View Recipes</Link>
           </div>
         </div>
       </div>
