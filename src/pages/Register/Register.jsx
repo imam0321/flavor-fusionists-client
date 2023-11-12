@@ -1,13 +1,33 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photo = form.photoUrl.value;
+    console.log(name, email, password, photo);
+    createUser(email, password)
+    .then(result => {
+      console.log(result.user);
+      navigate('/');
+    })
+    .catch(error => console.error(error))
+  } 
   return (
     <div>
-      <div className="hero max-h-screen">
+      <div className="hero min-h-screen">
       <div className="hero-content flex-col">
         <h1 className="text-5xl font-bold">Please Registration!</h1> 
         <div className="card flex-shrink-0  w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body">
+          <form onSubmit={handleRegister} className="card-body">
           <div className="form-control">
               <label className="label">
                 <span className="label-text">Full Name</span>
@@ -51,7 +71,6 @@ const Register = () => {
                 type="file"
                 name="photoUrl"
                 className="file-input w-full max-w-xs"
-                required
               />
             </div>
               <label className="label">
