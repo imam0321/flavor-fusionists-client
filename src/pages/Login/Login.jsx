@@ -1,9 +1,7 @@
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { imam } = useContext(AuthContext);
+
   return (
     <div className="hero max-h-screen mt-10">
       <div className="hero-content flex-col">
@@ -37,7 +35,7 @@ const Login = () => {
                 <Link to='#' className="label-text-alt link link-hover">
                   Forgot password?
                 </Link>
-                <Link to="/register" className="label-text-alt link link-hover">Sing Up</Link>
+                <Link to="/register" className="label-text-alt link link-hover">You have no account please sing Up</Link>
               </label>
             </div>
             <div className="form-control mt-4">

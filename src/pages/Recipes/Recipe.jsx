@@ -3,13 +3,13 @@ import '@smastrom/react-rating/style.css'
 
 const Recipe = ({ recipe }) => {
   const {
-    recipe_id,
     recipe_name,
     recipe_description,
     recipe_rating,
     ingredients,
     recipe_picture,
   } = recipe;
+  
   return (
     <div className='my-5'>
       <div className="card lg:card-side bg-base-100 shadow-xl ">
