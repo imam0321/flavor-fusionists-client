@@ -6,11 +6,10 @@ const Recipes = () => {
   const chef = useLoaderData();
   const { recipes } = chef;
   return (
-    <div>
-      <h1>this is recipes {recipes.length}</h1>
+    <div className="my-10 mx-20">
       { 
         recipes.map(recipe => <Recipe 
-          key={recipe._id}
+          key={recipe.recipe_id}
           recipe={recipe}
           ></Recipe>)
       }
