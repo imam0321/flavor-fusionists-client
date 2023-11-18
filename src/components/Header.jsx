@@ -27,12 +27,16 @@ const Header = () => {
           </Link>
           <div className="">
             {user ? (
-              <button
+              <div className="flex items-center">
+                <button
                 onClick={handleLogOut}
                 className="btn btn-ghost normal-case text-xl"
               >
                 LogOut
-              </button>
+              </button>       
+              <button>{user?.displayName}</button>
+              <img className="mx-2 h-10 w-10 rounded-full" src={user?.photoURL} alt="" />
+              </div>
             ) : (
               <Link to="/login" className="btn btn-ghost normal-case text-xl">
                 LogIn

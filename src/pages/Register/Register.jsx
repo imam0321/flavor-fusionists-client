@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = (event) => {
@@ -13,14 +13,16 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photoUrl.value;
-    console.log(name, email, password, photo);
     createUser(email, password)
-    .then(result => {
-      console.log(result.user);
+    .then(() => {
+      updateUser(name, photo)
+      .then(result => console.log(result.user))
+      .catch(error => console.error(error))
       navigate('/');
     })
     .catch(error => console.error(error))
   } 
+
   return (
     <div>
       <div className="hero min-h-screen">

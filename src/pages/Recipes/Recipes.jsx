@@ -4,6 +4,7 @@ import Recipe from "./Recipe";
 
 const Recipes = () => {
   const chef = useLoaderData();
+  console.log(chef);
   const { recipes } = chef;
   return (
     <div className="my-10 mx-20">
