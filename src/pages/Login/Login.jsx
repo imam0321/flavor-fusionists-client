@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleSingIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
@@ -21,6 +21,17 @@ const Login = () => {
     })
     .catch(error => console.error(error))
   } 
+
+  const handleGoogleLogin = () =>{
+    googleSingIn()
+    .then(result => {
+      console.log(result.user);
+      navigate(from, {replace: true});
+    })
+    .catch(()=>{})
+  }
+
+
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col">
@@ -61,7 +72,7 @@ const Login = () => {
               <button className="btn btn-neutral">Login</button>
             </div>
             <div className="flex justify-around items-center ">
-              <button className="btn text-white bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 w-1/2 mr-1">Google</button>
+              <button onClick={handleGoogleLogin} className="btn text-white bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 w-1/2 mr-1">Google</button>
               <button className="btn  text-white bg-gradient-to-r from-slate-500 via-slate-500 to-slate-400 w-1/2 ">GitHub</button>
             </div>
           </form>
