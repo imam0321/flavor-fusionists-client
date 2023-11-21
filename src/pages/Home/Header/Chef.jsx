@@ -33,7 +33,7 @@ const Chef = ({ chef }) => {
             </div>
           </div>
           <div className="card-actions justify-end">
-            <Link to={`/chefs/${chef_id}`} className="btn btn-neutral">View Recipes</Link>
+            <Link to={`/chefs/chef/recipes/${chef_id}`} className="btn btn-neutral">View Recipes</Link>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ const Header = () => {
   };
   return (
     <nav>
-      <div className="md:flex md:justify-between navbar bg-neutral text-neutral-content">
+      <div className="md:flex md:justify-between navbar bg-neutral text-neutral-content px-20">
         <h1 className="btn btn-ghost normal-case text-xl">Flavor Fusionists</h1>
 
         <div className="">
