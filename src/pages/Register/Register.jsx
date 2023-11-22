@@ -1,10 +1,14 @@
 import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { useState } from 'react';
 
 const Register = () => {
   const { createUser, updateUser } = useContext(AuthContext);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.status?.from.pathname || '/';
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -13,14 +17,29 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photoUrl.value;
+    
+    if(password.length < 6){
+      setError('Password minimum 8 characters');
+      return;
+    }
+    else if(!/(?=.[A-Z])/.test(password)){
+      setError('Add capital later on password');
+      return;
+    }
+
     createUser(email, password)
     .then(() => {
       updateUser(name, photo)
-      .then(result => console.log(result.user))
+      .then(result => {
+        console.log(result.user);
+        setError('');
+      })
       .catch(error => console.error(error))
-      navigate('/');
+      navigate(from, {replace : true});
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      setError(error.message)
+    })
   } 
 
   return (
@@ -65,6 +84,7 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
+              <p className='text-red-500'>{error}</p>
               <div className="form-control">
               <label className="label">
                 <span className="label-text">Photo URL</span>

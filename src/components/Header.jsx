@@ -35,7 +35,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[3] p-2 shadow bg-neutral text-neutral-content rounded w-52"
+              className="menu menu-sm dropdown-content mt-2 z-[3] p-2 shadow bg-neutral text-neutral-content rounded w-52"
             >
               <div>
                 {user ? (
@@ -43,7 +43,7 @@ const Header = () => {
                     <button>{user?.displayName}</button>
                     <img
                       className="my-2 h-10 w-10 rounded-full"
-                      src={user?.photoURL}
+                      src={user?.photoURL || '../../public/title.jpg'}
                       alt=""
                     />
                   </div>
@@ -51,24 +51,29 @@ const Header = () => {
                   ""
                 )}
               </div>
-              <Link to="/" className="btn btn-ghost normal-case text-xl">
+              <Link to="/" className="btn btn-ghost normal-case">
                 Home
               </Link>
-              <Link to="/blogs" className="btn btn-ghost normal-case text-xl">
+              <Link to="/blogs" className="btn btn-ghost normal-case">
                 Blogs
               </Link>
               {user ? (
                 <button
                   onClick={handleLogOut}
-                  className="btn btn-ghost normal-case text-lg"
+                  className="btn btn-ghost normal-case "
                 >
                   LogOut
                 </button>
               ) : (
-                <Link to="/login" className="btn btn-ghost normal-case text-lg">
+                <Link to="/login" className="btn btn-ghost normal-case">
                   LogIn
                 </Link>
               )}
+               {
+                user ? '' : <Link to="/register" className="btn btn-ghost normal-case">
+                Registration
+                </Link>
+              }
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">Flavor Fusionists</a>
@@ -85,6 +90,13 @@ const Header = () => {
                 Blogs
               </Link>
             </li>
+            <li>
+              {
+                user ? '' : <Link to="/register" className="btn btn-ghost normal-case text-xl">
+                Registration
+              </Link>
+              }
+            </li>
           </ul>
         </div>
         <div className="navbar-end hidden lg:flex">
@@ -93,7 +105,7 @@ const Header = () => {
               <div className="flex items-center">
                 <img
                   className="mx-1 h-10 w-10 rounded-full"
-                  src={user?.photoURL}
+                  src={user?.photoURL || '../../public/title.jpg'}
                   alt=""
                 />
                  <button className="normal-case text-xl">{user?.displayName}</button>

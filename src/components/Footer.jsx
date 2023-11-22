@@ -1,12 +1,20 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Footer = () => {
+  const { user } = useContext(AuthContext);
   return (
     <footer className="footer footer-center p-10 bg-neutral text-neutral-content mt-10">
       <nav className="grid grid-flow-col gap-4">
         <Link to='/' className="link link-hover">Chefs</Link>
-        <Link to='/login' className="link link-hover">Login</Link>
-        <Link to='/register' className="link link-hover">Register</Link>
+        {
+          user ? '': 
+          <>
+          <Link to='/login' className="link link-hover">Login</Link>
+          <Link to='/register' className="link link-hover">Register</Link>
+          </>
+        }
         <Link to='/blogs' className="link link-hover">Blogs</Link>
       </nav>
       <nav>

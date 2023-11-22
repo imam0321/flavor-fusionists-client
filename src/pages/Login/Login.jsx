@@ -6,41 +6,42 @@ const Login = () => {
   const { signIn, googleSingIn, githubSingIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
-  const handleLogIn = (event) =>{
+  const handleLogIn = (event) => {
     event.preventDefault();
-    const form =  event.target;
+    const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
     signIn(email, password)
-    .then(() => {
-      navigate(from, {replace: true});
-    })
-    .catch(error => console.error(error))
-  } 
+      .then(() => {
+        navigate(from, { replace: true });
+        
+      })
+      .catch(() => {});
+  };
 
-  const handleGoogleLogin = () =>{
+  const handleGoogleLogin = () => {
     googleSingIn()
-    .then(()=> {
-      navigate(from, {replace: true});
-    })
-    .catch(()=>{})
-  }
+      .then(() => {
+        navigate(from, { replace: true });
+      })
+      .catch(() => {});
+  };
 
-  const handleGitHubLogin = () =>{
+  const handleGitHubLogin = () => {
     githubSingIn()
-    .then(() => {
-      navigate(from, {replace: true});
-    })
-    .catch(()=>{})
-  }
+      .then(() => {
+        navigate(from, { replace: true });
+      })
+      .catch(() => {});
+  };
 
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col">
-        <h1 className="text-3xl font-bold">Please Login now!</h1> 
+        <h1 className="text-3xl font-bold">Please Login now!</h1>
         <div className="card flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handleLogIn} className="card-body">
             <div className="form-control">
@@ -67,18 +68,30 @@ const Login = () => {
                 required
               />
               <label className="label flex justify-between items-center">
-                <Link to='#' className="label-text-alt link link-hover">
+                <Link to="#" className="label-text-alt link link-hover">
                   Forgot password?
                 </Link>
-                <Link to="/register" className="label-text-alt link link-hover">You have no account please sing Up</Link>
+                <Link to="/register" className="label-text-alt link link-hover">
+                  Sing Up !
+                </Link>
               </label>
             </div>
             <div className="form-control mt-4">
               <button className="btn btn-neutral">Login</button>
             </div>
             <div className="flex justify-around items-center ">
-              <button onClick={handleGoogleLogin} className="btn text-white bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 w-1/2 mr-1">Google</button>
-              <button onClick={handleGitHubLogin} className="btn  text-white bg-gradient-to-r from-slate-500 via-slate-500 to-slate-400 w-1/2 ">GitHub</button>
+              <button
+                onClick={handleGoogleLogin}
+                className="btn text-white bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 w-1/2 mr-1"
+              >
+                Google
+              </button>
+              <button
+                onClick={handleGitHubLogin}
+                className="btn  text-white bg-gradient-to-r from-slate-500 via-slate-500 to-slate-400 w-1/2 "
+              >
+                GitHub
+              </button>
             </div>
           </form>
         </div>
