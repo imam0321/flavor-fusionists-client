@@ -7,7 +7,7 @@ const Recipes = () => {
 
   const { recipes } = chef;
   return (
-    <div className="my-10 mx-20">
+    <div className="my-10 mx-10">
       { 
         recipes.map(recipe => <Recipe 
           key={recipe.recipe_id}

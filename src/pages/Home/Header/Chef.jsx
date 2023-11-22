@@ -10,7 +10,7 @@ const Chef = ({ chef }) => {
 
   return (
     <div>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact bg-base-100 shadow-xl">
         <figure>
           <img
             src={chef_picture}
