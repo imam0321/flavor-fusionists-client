@@ -5,6 +5,7 @@ import Carousel from "../../../components/Carousel";
 
 const Home = () => {
   const chefs = useLoaderData();
+  console.log(chefs);
   return (
     <>
     <Carousel></Carousel>

@@ -3,6 +3,7 @@ import Blog from "./Blog";
 
 const Blogs = () => {
   const blogs = useLoaderData();
+  console.log(blogs);
 
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 gap-3 lg:w-9/12 lg:mx-auto mx-3 my-10">

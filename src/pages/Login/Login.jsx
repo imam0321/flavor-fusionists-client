@@ -17,7 +17,6 @@ const Login = () => {
     signIn(email, password)
       .then(() => {
         navigate(from, { replace: true });
-        
       })
       .catch(() => {});
   };

@@ -1,6 +1,4 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Home from "../pages/Home/Header/Home";
 import Blogs from "../pages/Blogs/Blogs";
@@ -8,7 +6,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Recipes from "../pages/Recipes/Recipes";
 import PrivateRoutes from "./PrivateRoutes";
-import ChefDetails from "../pages/Recipes/ChefDetails";
+import ErrorPages from "../components/ErrorPages";
 
 const router = createBrowserRouter([
   {
@@ -16,36 +14,44 @@ const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/chefs')
+        loader: () =>
+        fetch('https://flavor-fusionists-2-server-oq9u9ezr2-imam-hossains-projects.vercel.app/chefs')
       },
       {
-        path: '/chefs/chef/:id',
-        element: <ChefDetails></ChefDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/chefs/chef/${params.id}`)
+        path: "/chefs/chef/recipes/:id",
+        element: (
+          <PrivateRoutes>
+            <Recipes></Recipes>
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://flavor-fusionists-2-server-4mdichyy3-imam-hossains-projects.vercel.app/chefs/chef/recipes/${params.id}`
+          ),
       },
       {
-        path: '/chefs/chef/recipes/:id',
-        element: <PrivateRoutes><Recipes></Recipes></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/chefs/chef/recipes/${params.id}`)
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-        path: '/register',
-        element: <Register></Register>
-      },
-      {
-        path: '/blogs',
+        path: "/blogs",
         element: <Blogs></Blogs>,
-        loader: () => fetch('http://localhost:5000/blogs')
+        loader: () =>
+          fetch(
+            "https://flavor-fusionists-2-server-4mdichyy3-imam-hossains-projects.vercel.app/blogs"
+          ),
       },
-
-    ]
-    
+      {
+        path: '/*',
+        element: <ErrorPages></ErrorPages>
+      }
+    ],
   },
 ]);
 

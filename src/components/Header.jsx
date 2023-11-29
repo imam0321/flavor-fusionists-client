@@ -43,7 +43,7 @@ const Header = () => {
                     <button>{user?.displayName}</button>
                     <img
                       className="my-2 h-10 w-10 rounded-full"
-                      src={user?.photoURL || '../../public/title.jpg'}
+                      src={user?.photoURL || "../../public/title.jpg"}
                       alt=""
                     />
                   </div>
@@ -69,11 +69,13 @@ const Header = () => {
                   LogIn
                 </Link>
               )}
-               {
-                user ? '' : <Link to="/register" className="btn btn-ghost normal-case">
-                Registration
+              {user ? (
+                ""
+              ) : (
+                <Link to="/register" className="btn btn-ghost normal-case">
+                  Registration
                 </Link>
-              }
+              )}
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">Flavor Fusionists</a>
@@ -91,11 +93,16 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              {
-                user ? '' : <Link to="/register" className="btn btn-ghost normal-case text-xl">
-                Registration
-              </Link>
-              }
+              {user ? (
+                ""
+              ) : (
+                <Link
+                  to="/register"
+                  className="btn btn-ghost normal-case text-xl"
+                >
+                  Registration
+                </Link>
+              )}
             </li>
           </ul>
         </div>
@@ -105,10 +112,12 @@ const Header = () => {
               <div className="flex items-center">
                 <img
                   className="mx-1 h-10 w-10 rounded-full"
-                  src={user?.photoURL || '../../public/title.jpg'}
+                  src={user?.photoURL || "../../public/title.jpg"}
                   alt=""
                 />
-                 <button className="normal-case text-xl">{user?.displayName}</button>
+                <button className="normal-case text-xl">
+                  {user?.displayName}
+                </button>
                 <button
                   onClick={handleLogOut}
                   className="btn btn-ghost normal-case text-xl"
